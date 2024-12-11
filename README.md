@@ -1,93 +1,75 @@
 
-# YouTube Video Downloader CLI
+# YouTube CLI Downloader
 
-This project provides a command-line interface (CLI) tool for downloading YouTube videos, either as a single video or all videos from a specific YouTube channel, using the `pytubefix` library.
+A command-line tool for downloading single or multiple YouTube videos using `pytubefix`. 
 
 ## Features
 
 - Download a single YouTube video.
-- Download all videos from a specific YouTube channel.
+- Download all videos from a YouTube channel.
+- Automatically organizes downloaded videos by the author's name.
 
 ## Requirements
 
-- Python 3.6 or later
+- Python 3.x
 - `pytubefix` library
 
 ## Installation
 
-1. Clone the repository:
-
-   ```bash
-   git clone <repository-url>
-   cd <repository-folder>
-   ```
-
-2. Install the required dependencies:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Ensure `pytubefix` is installed. You can find it here: [pytubefix GitHub](https://github.com/JuanBindez/pytubefix).
+1. Clone this repository or download the files.
+2. Install dependencies:
+    ```bash
+    pip install pytubefix
+    ```
 
 ## Usage
 
-Run the CLI tool using the following syntax:
+Run the script using the command line with the appropriate options.
 
-```bash
-python youtube_cli.py [-h] [-u URL (--single-video | --all-channel-videos)]
-```
+### Commands
 
-### Arguments
+- **Download a Single Video**
+    ```bash
+    python youtube_cli.py --url https://www.youtube.com/watch?v=<video_id> --download
+    ```
 
-- **`-u, --url`**:
-  Provide the YouTube video or channel URL.  
-  For a single video: `https://www.youtube.com/watch?v=<video_id>`  
-  For a channel: `https://www.youtube.com/@<channel_name>`
+- **Download All Videos from a Channel**
+    ```bash
+    python youtube_cli.py --url https://www.youtube.com/@<channel_name> --all-channel-videos
+    ```
 
-- **`-s, --single-video`**:
-  Download a single YouTube video.
-
-- **`-a, --all-channel-videos`**:
-  Download all videos from a YouTube channel.
-
-### Examples
+### Example
 
 1. Download a single video:
-
-   ```bash
-   python youtube_cli.py --url https://www.youtube.com/watch?v=<video_id> --single-video
-   ```
+    ```bash
+    python youtube_cli.py --url https://www.youtube.com/watch?v=example123 --download
+    ```
 
 2. Download all videos from a channel:
-
-   ```bash
-   python youtube_cli.py --url https://www.youtube.com/@<channel_name> --all-channel-videos
-   ```
-
-### Notes
-
-- Downloaded videos will be saved in the directory: `C:\Users\<user>\Downloads\<author_name>`
-- If `pytubefix` fails to fetch a specific resolution, the highest resolution available will be downloaded.
+    ```bash
+    python youtube_cli.py --url https://www.youtube.com/@exampleChannel --all-channel-videos
+    ```
 
 ## File Structure
 
-```
-.
-├── youtube_cli.py          # Main CLI script
-├── downloader.py           # Contains the logic for downloading videos
-├── requirements.txt        # List of dependencies
-└── README.md               # Documentation
-```
+- `youtube_cli.py`: Main script to handle command-line arguments and invoke the downloader functions.
+- `downloader.py`: Contains functions for downloading single videos and all videos from a channel.
 
 ## Error Handling
 
-- If an invalid URL is provided or there is an issue with the download, an error message will be displayed in the console.
-- The `--url` argument is required when using `--single-video` or `--all-channel-videos`.
+- **VideoUnavailable Error**: If a video is restricted or unavailable, it will display a specific error message.
+- **General Errors**: Any other issues will be caught and logged for debugging.
+
+## Output
+
+- Videos are downloaded to:
+    ```
+    C:\Users\<YourUsername>\Downloads\<AuthorName>
+    ```
 
 ## Contributing
 
-Contributions are welcome! Feel free to submit issues or pull requests.
+Feel free to fork the repository and submit pull requests for new features or bug fixes.
 
 ## License
 
